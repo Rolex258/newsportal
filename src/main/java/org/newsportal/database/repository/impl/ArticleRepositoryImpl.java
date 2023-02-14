@@ -71,14 +71,21 @@ public class ArticleRepositoryImpl implements ArticleRepository {
         }
     }
 
+    @Override
+    public Article getByUserId(Long userId) {
+        try(Session session = sessionFactory.openSession()){
+            Query query = session.createQuery("from Article where user.id = :id");
+            query.setParameter("id", userId);
+            Article article = (Article) query.getSingleResult();
+            return article;
+        }
+    }
+
 
     public static void main(String[] args) {
         ArticleRepositoryImpl articleRepository = new ArticleRepositoryImpl();
-        System.out.println(articleRepository.findAll());
-
-        articleRepository.deleteArticleById(3L);
-
-        System.out.println(articleRepository.findAll());
+        //System.out.println(articleRepository.findAll());
+        System.out.println(articleRepository.getByUserId(4L));
 
     }
 }

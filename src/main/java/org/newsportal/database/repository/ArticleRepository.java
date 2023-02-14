@@ -10,4 +10,5 @@ public interface ArticleRepository {
     Article getByTitle(String username);
     void updateArticleById(Long id, Article article);
     void deleteArticleById(Long id);
+    Article  getByUserId(Long userId);
 }
