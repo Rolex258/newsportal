@@ -79,13 +79,15 @@ public class ArticleRepositoryImpl implements ArticleRepository {
             Article article = (Article) query.getSingleResult();
             return article;
         }
+
     }
 
 
     public static void main(String[] args) {
         ArticleRepositoryImpl articleRepository = new ArticleRepositoryImpl();
-        //System.out.println(articleRepository.findAll());
+        System.out.println(articleRepository.findAll());
         System.out.println(articleRepository.getByUserId(4L));
+
 
     }
 }

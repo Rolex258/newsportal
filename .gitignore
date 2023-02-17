@@ -1,2 +1,6 @@
 /.idea/
 /target/
+/target/
+/target/classes/
+/news-portal.iml
+/target/classes/org/newsportal/database/repository/util/ArticleRepository.class

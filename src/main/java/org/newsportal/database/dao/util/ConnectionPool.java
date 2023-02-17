@@ -59,7 +59,7 @@ public class ConnectionPool {
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }
 
-    public Connection getConnection() throws InterruptedException {
+    public synchronized Connection getConnection() throws InterruptedException {
 
         return blockingQueue.take();
     }
@@ -68,7 +68,7 @@ public class ConnectionPool {
         blockingQueue.put(connection);
     }
 
-    public static ConnectionPool getConnectionPool() {
+    public synchronized static ConnectionPool getConnectionPool() {
         if (connectionPool == null) {
             connectionPool = new ConnectionPool();
         }
