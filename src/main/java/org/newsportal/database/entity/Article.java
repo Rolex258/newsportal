@@ -1,11 +1,7 @@
-package org.newsportal.database.repository.entity;
+package org.newsportal.database.entity;
 
-
-import org.hibernate.annotations.Cascade;
-import org.springframework.stereotype.Repository;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 @Table(name = "Article")
@@ -18,7 +14,7 @@ public class Article {
     @Column(name = "content")
     private String content;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "userId")
     private User user;
 

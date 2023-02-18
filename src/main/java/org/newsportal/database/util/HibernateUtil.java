@@ -1,9 +1,7 @@
-package org.newsportal.database.repository.util;
+package org.newsportal.database.util;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.newsportal.database.repository.entity.Article;
-import org.newsportal.database.repository.entity.User;
 
 public class HibernateUtil {
     private static SessionFactory sessionFactory = buildSessionFactory();

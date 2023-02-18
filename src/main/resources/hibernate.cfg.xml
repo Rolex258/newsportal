@@ -10,8 +10,8 @@
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="show_sql">true</property>
-        <mapping class="org.newsportal.database.repository.entity.User"/>
-        <mapping class="org.newsportal.database.repository.entity.Article"/>
+        <mapping class="org.newsportal.database.entity.User"/>
+        <mapping class="org.newsportal.database.entity.Article"/>
 
 
     </session-factory>

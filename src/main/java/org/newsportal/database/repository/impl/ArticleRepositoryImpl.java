@@ -5,19 +5,21 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-import org.newsportal.database.repository.entity.Article;
+import org.newsportal.database.entity.Article;
 import org.newsportal.database.repository.ArticleRepository;
-import org.newsportal.database.repository.util.HibernateUtil;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 //@Component @Repository @Service @Bean @RestController - декларация бина
+@Repository
 public class ArticleRepositoryImpl implements ArticleRepository {
     private final SessionFactory sessionFactory;
 
-    public ArticleRepositoryImpl() {
-        this.sessionFactory = HibernateUtil.getSessionFactory();
+    public ArticleRepositoryImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
+
 
     @Override
     public List<Article> findAll() {
@@ -35,18 +37,17 @@ public class ArticleRepositoryImpl implements ArticleRepository {
     }
 
     @Override
-    public Article getById(Long id) {
+    public Article findById(Long id) {
         try (Session session = sessionFactory.openSession()) {
-            Article article = session.get(Article.class, id);
-            return article;
+            return session.get(Article.class, id);
         }
     }
 
     @Override
-    public Article getByTitle(String searchtitle) {
+    public Article findByTitle(String searchTitle) {
         try (Session session = sessionFactory.openSession()) {
             Query query = session.createQuery("from Article where title = :title", Article.class);
-            query.setParameter("title", searchtitle);
+            query.setParameter("title", searchTitle);
             Article article = (Article) query.getSingleResult();
             return article;
         }
@@ -66,15 +67,15 @@ public class ArticleRepositoryImpl implements ArticleRepository {
     public void deleteArticleById(Long id) {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
-            session.remove(getById(id));
+            session.remove(findById(id));
             transaction.commit();
         }
     }
 
     @Override
-    public Article getByUserId(Long userId) {
+    public Article findByUserId(Long userId) {
         try(Session session = sessionFactory.openSession()){
-            Query query = session.createQuery("from Article where user.id = :id");
+            Query<Article> query = session.createQuery("from Article where user.id = :id");
             query.setParameter("id", userId);
             Article article = (Article) query.getSingleResult();
             return article;
@@ -84,10 +85,6 @@ public class ArticleRepositoryImpl implements ArticleRepository {
 
 
     public static void main(String[] args) {
-        ArticleRepositoryImpl articleRepository = new ArticleRepositoryImpl();
-        System.out.println(articleRepository.findAll());
-        System.out.println(articleRepository.getByUserId(4L));
-
 
     }
 }

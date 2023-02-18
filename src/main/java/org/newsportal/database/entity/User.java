@@ -1,6 +1,4 @@
-package org.newsportal.database.repository.entity;
-
-import org.hibernate.annotations.Cascade;
+package org.newsportal.database.entity;
 
 import javax.persistence.*;
 
@@ -18,7 +16,7 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Article> articles;
 
     public User(){}
