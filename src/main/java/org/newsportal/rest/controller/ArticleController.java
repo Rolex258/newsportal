@@ -22,27 +22,32 @@ public class ArticleController {
         return ResponseEntity.ok(articleService.getAll().orElseThrow());
     }
 
-    @GetMapping(value = "/article_id/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Article> getById(@PathVariable Long id) {
+    @GetMapping(value = "/articles", params = "id", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Article> getById(@RequestParam Long id) {
         return ResponseEntity.ok(articleService.getById(id).orElseThrow());
     }
 
-    @GetMapping(value = "/article_title/{title}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Article> getByTitle(@PathVariable String title) {
+    @GetMapping(value = "/articles", params = "title", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Article> getByTitle(@RequestParam String title) {
         return ResponseEntity.ok(articleService.getByTitle(title).orElseThrow());
     }
 
-    @GetMapping(value = "/article_byUser/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Article> getByUserId(@PathVariable Long id) {
+    @GetMapping(value = "/articles", params = "userid", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Article> getByUserId(@RequestParam Long id) {
         return ResponseEntity.ok(articleService.getByUserId(id).orElseThrow());
     }
 
-    @PatchMapping(value = "/article_id/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/articles", produces = MediaType.APPLICATION_JSON_VALUE)
+    public void addArticle(@RequestBody Article article) {
+        articleService.addArticle(article);
+    }
+
+    @PatchMapping(value = "/articles/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public void updateById(@PathVariable Long id, @RequestBody Article article) {
         articleService.updateArticleById(id, article);
     }
 
-    @DeleteMapping(value = "/article_id/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "/articles/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public void deleteById(@PathVariable Long id) {
         articleService.deleteArticleById(id);
     }

@@ -18,13 +18,13 @@ public class ArticleMapperImpl implements ArticleMapper {
 
     @Override
     public Article mapToService(org.newsportal.database.entity.Article source) {
-        if (source == null) return null;
+        if (source == null || source.getUser() == null) return null;
         return new Article(source.getId(), source.getTitle(), source.getContent(), userMapper.mapToService(source.getUser()));
     }
 
     @Override
     public org.newsportal.database.entity.Article mapToDatabase(Article source) {
-        if (source == null) return null;
+        if (source == null || source.getUser() == null) return null;
         return new org.newsportal.database.entity.Article(source.getId(), source.getTitle(), source.getContent(), userMapper.mapToDatabase(source.getUser()));
     }
 

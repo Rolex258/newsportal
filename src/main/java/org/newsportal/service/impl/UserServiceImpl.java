@@ -43,6 +43,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void addUser(User user) {
+        userRepository.addUser(userMapper.mapToDatabase(user));
+    }
+
+    @Override
     public void updateUserById(Long id, User user) {
         userRepository.updateUserById(id, userMapper.mapToDatabase(user));
     }

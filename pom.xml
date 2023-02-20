@@ -82,7 +82,6 @@
       <version>2.10.0.pr3</version>
     </dependency>
 
-
   </dependencies>
   <build>
     <finalName>news-portal</finalName>

@@ -12,8 +12,6 @@
         <property name="show_sql">true</property>
         <mapping class="org.newsportal.database.entity.User"/>
         <mapping class="org.newsportal.database.entity.Article"/>
-
-
     </session-factory>
 </hibernate-configuration>
 

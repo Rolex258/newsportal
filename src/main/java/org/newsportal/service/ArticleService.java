@@ -11,6 +11,7 @@ public interface ArticleService {
     Optional<Article> getById(Long id);
 
     Optional<Article> getByTitle(String username);
+    void addArticle(Article article);
 
     void updateArticleById(Long id, Article article);
 

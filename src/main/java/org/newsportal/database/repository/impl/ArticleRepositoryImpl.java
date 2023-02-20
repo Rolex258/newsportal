@@ -8,6 +8,7 @@ import org.hibernate.query.Query;
 import org.newsportal.database.entity.Article;
 import org.newsportal.database.repository.ArticleRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.ReflectionUtils;
 
 import java.util.List;
 
@@ -54,6 +55,15 @@ public class ArticleRepositoryImpl implements ArticleRepository {
     }
 
     @Override
+    public void addArticle(Article article) {
+        try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
+            session.save(article);
+            transaction.commit();
+        }
+    }
+
+    @Override
     public void updateArticleById(Long id, Article article) {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
@@ -74,17 +84,12 @@ public class ArticleRepositoryImpl implements ArticleRepository {
 
     @Override
     public Article findByUserId(Long userId) {
-        try(Session session = sessionFactory.openSession()){
+        try (Session session = sessionFactory.openSession()) {
             Query<Article> query = session.createQuery("from Article where user.id = :id");
             query.setParameter("id", userId);
-            Article article = (Article) query.getSingleResult();
+            Article article = query.getSingleResult();
             return article;
         }
-
-    }
-
-
-    public static void main(String[] args) {
 
     }
 }

@@ -41,6 +41,15 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    public void addUser(User user) {
+        try(Session session = sessionFactory.openSession()){
+            Transaction transaction = session.beginTransaction();
+            session.save(user);
+            transaction.commit();
+        }
+    }
+
+    @Override
     public void updateUserById(Long id, User user) {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
@@ -57,11 +66,5 @@ public class UserRepositoryImpl implements UserRepository {
             session.delete(findById(id));
             transaction.commit();
         }
-    }
-
-    public static void main(String[] args) {
-//        UserRepositoryImpl userRepository = new UserRepositoryImpl(sessionFactory);
-//        //userRepository.deleteUserById(3L);
-//        System.out.println(userRepository.findAll());
     }
 }

@@ -35,6 +35,11 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public void addArticle(Article article) {
+        articleRepository.addArticle(articleMapper.mapToDatabase(article));
+    }
+
+    @Override
     public void updateArticleById(Long id, Article article) {
         articleRepository.updateArticleById(id, articleMapper.mapToDatabase(article));
     }
