@@ -6,9 +6,11 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.newsportal.database.entity.User;
 import org.newsportal.database.repository.UserRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public class UserRepositoryImpl implements UserRepository {
     private final SessionFactory sessionFactory;
 
@@ -42,7 +44,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public void addUser(User user) {
-        try(Session session = sessionFactory.openSession()){
+        try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
             session.save(user);
             transaction.commit();

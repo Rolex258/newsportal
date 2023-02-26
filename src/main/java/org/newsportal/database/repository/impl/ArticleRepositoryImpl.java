@@ -4,15 +4,12 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-
 import org.newsportal.database.entity.Article;
 import org.newsportal.database.repository.ArticleRepository;
 import org.springframework.stereotype.Repository;
-import org.springframework.util.ReflectionUtils;
 
 import java.util.List;
 
-//@Component @Repository @Service @Bean @RestController - декларация бина
 @Repository
 public class ArticleRepositoryImpl implements ArticleRepository {
     private final SessionFactory sessionFactory;
@@ -20,7 +17,6 @@ public class ArticleRepositoryImpl implements ArticleRepository {
     public ArticleRepositoryImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
-
 
     @Override
     public List<Article> findAll() {

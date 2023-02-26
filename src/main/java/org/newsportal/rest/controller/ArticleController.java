@@ -22,8 +22,8 @@ public class ArticleController {
         return ResponseEntity.ok(articleService.getAll().orElseThrow());
     }
 
-    @GetMapping(value = "/articles", params = "id", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Article> getById(@RequestParam Long id) {
+    @GetMapping(value = "/articles/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Article> getById(@PathVariable Long id) {
         return ResponseEntity.ok(articleService.getById(id).orElseThrow());
     }
 
@@ -32,8 +32,8 @@ public class ArticleController {
         return ResponseEntity.ok(articleService.getByTitle(title).orElseThrow());
     }
 
-    @GetMapping(value = "/articles", params = "userid", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Article> getByUserId(@RequestParam Long id) {
+    @GetMapping(value = "/articles/user/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Article> getByUserId(@PathVariable Long id) {
         return ResponseEntity.ok(articleService.getByUserId(id).orElseThrow());
     }
 
