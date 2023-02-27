@@ -29,17 +29,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Optional<List<User>> getAll() {
-        return Optional.of(userMapper.mapToService(userRepository.findAll()));
+        return Optional.ofNullable(userMapper.mapToService(userRepository.findAll()));
     }
 
     @Override
     public Optional<User> getById(Long id) {
-        return Optional.of(userMapper.mapToService(userRepository.findById(id)));
+        return Optional.ofNullable(userMapper.mapToService(userRepository.findById(id)));
     }
 
     @Override
     public Optional<User> getByUsername(String username) {
-        return Optional.of(userMapper.mapToService(userRepository.findByUsername(username)));
+        return Optional.ofNullable(userMapper.mapToService(userRepository.findByUsername(username)));
     }
 
     @Override

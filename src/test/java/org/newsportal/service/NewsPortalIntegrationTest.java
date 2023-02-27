@@ -95,11 +95,7 @@ public class NewsPortalIntegrationTest {
         articleService.getByUserId(1L);
 
         //Deleting method
-        //articleService.deleteArticleById(1L);
         userService.deleteUserById(1L);
-        System.out.println(articleService.getAll());
-        System.out.println(userService.getAll());
-
     }
 
 

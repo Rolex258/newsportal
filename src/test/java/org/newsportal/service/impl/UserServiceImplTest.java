@@ -37,26 +37,12 @@ class UserServiceImplTest {
 
     @Test
     void getById() {
-        org.newsportal.database.entity.User user = null;
-
-        when(userRepository.findById(Mockito.anyLong()))
-                .thenReturn(user = new org.newsportal.database.entity.User(5L, "testna", "pas"));
-        when(userMapper.mapToService(user))
-                .thenReturn(new User(user.getId(), user.getUsername(), user.getPassword()));
-
         userService.getById(Mockito.anyLong());
         Mockito.verify(userRepository).findById(Mockito.anyLong());
     }
 
     @Test
     void getByUsername() {
-        org.newsportal.database.entity.User user = null;
-
-        when(userRepository.findByUsername(Mockito.anyString()))
-                .thenReturn(user = new org.newsportal.database.entity.User(5L, "testna", "pas"));
-        when(userMapper.mapToService(user))
-                .thenReturn(new User(user.getId(), user.getUsername(), user.getPassword()));
-
         userService.getByUsername(Mockito.anyString());
         Mockito.verify(userRepository).findByUsername(Mockito.anyString());
     }

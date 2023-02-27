@@ -21,17 +21,17 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public Optional<List<Article>> getAll() {
-        return Optional.of(articleMapper.mapToService(articleRepository.findAll()));
+        return Optional.ofNullable(articleMapper.mapToService(articleRepository.findAll()));
     }
 
     @Override
     public Optional<Article> getById(Long id) {
-        return Optional.of(articleMapper.mapToService(articleRepository.findById(id)));
+        return Optional.ofNullable(articleMapper.mapToService(articleRepository.findById(id)));
     }
 
     @Override
     public Optional<Article> getByTitle(String username) {
-        return Optional.of(articleMapper.mapToService(articleRepository.findByTitle(username)));
+        return Optional.ofNullable(articleMapper.mapToService(articleRepository.findByTitle(username)));
     }
 
     @Override
@@ -51,6 +51,6 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public Optional<Article> getByUserId(Long userId) {
-        return Optional.of(articleMapper.mapToService(articleRepository.findByUserId(userId)));
+        return Optional.ofNullable(articleMapper.mapToService(articleRepository.findByUserId(userId)));
     }
 }

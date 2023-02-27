@@ -50,17 +50,6 @@ public class ArticleServiceImpTest {
 
     @Test
     void getById() {
-        org.newsportal.database.entity.Article article = null;
-        org.newsportal.database.entity.User user = null;
-
-        when(articleRepository.findById(Mockito.anyLong()))
-                .thenReturn(article = new org.newsportal.database.entity.Article
-                        (5L, "testna", "pas",
-                                user = new org.newsportal.database.entity.User(5L, "a", "b")));
-        when(articleMapper.mapToService(article))
-                .thenReturn(new Article(article.getId(), article.getTitle(), article.getContent(),
-                        new User(user.getId(), user.getUsername(), user.getPassword())));
-
         articleService.getById(Mockito.anyLong());
         Mockito.verify(articleRepository).findById(Mockito.anyLong());
 
@@ -68,17 +57,6 @@ public class ArticleServiceImpTest {
 
     @Test
     void getByTitle() {
-        org.newsportal.database.entity.Article article = null;
-        org.newsportal.database.entity.User user = null;
-
-        when(articleRepository.findByTitle(Mockito.anyString()))
-                .thenReturn(article = new org.newsportal.database.entity.Article
-                        (5L, "testna", "pas",
-                                user = new org.newsportal.database.entity.User(5L, "a", "b")));
-        when(articleMapper.mapToService(article))
-                .thenReturn(new Article(article.getId(), article.getTitle(), article.getContent(),
-                        new User(user.getId(), user.getUsername(), user.getPassword())));
-
         articleService.getByTitle(Mockito.anyString());
         Mockito.verify(articleRepository).findByTitle(Mockito.anyString());
     }
@@ -103,17 +81,6 @@ public class ArticleServiceImpTest {
 
     @Test
     void getByUserId() {
-        org.newsportal.database.entity.Article article = null;
-        org.newsportal.database.entity.User user = null;
-
-        when(articleRepository.findByUserId(Mockito.anyLong()))
-                .thenReturn(article = new org.newsportal.database.entity.Article
-                        (5L, "testna", "pas",
-                                user = new org.newsportal.database.entity.User(5L, "a", "b")));
-        when(articleMapper.mapToService(article))
-                .thenReturn(new Article(article.getId(), article.getTitle(), article.getContent(),
-                        new User(user.getId(), user.getUsername(), user.getPassword())));
-
         articleService.getByUserId(Mockito.anyLong());
         Mockito.verify(articleRepository).findByUserId(Mockito.anyLong());
     }
